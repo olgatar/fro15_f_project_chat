@@ -1,14 +1,14 @@
 {
-  "name": "fro15_f_project_chat",
+  "name": "fro15_f_project_travelnotebook",
   "version": "1.0.0",
-  "description": "Project assignment for Lernia FRO15 course Advanced Web Application 2. Chat as MEAN application with CRUD functionality using MongoDB (with MongooseJS), Express, Angular and Node.",
+  "description": "Project assignment for Lernia FRO15 course Advanced Web Application 2. TravelNotebook as MEAN application with CRUD functionality using MongoDB (with MongooseJS), Express, Angular and Node.",
   "main": "src/app.js",
   "scripts": {
     "test": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/olgatar/fro15_f_project_chat.git"
+    "url": "git+https://github.com/olgatar/fro15_f_project_travelnotebook.git"
   },
   "keywords": [
     "AngularJS",
@@ -19,9 +19,9 @@
   "author": "Olga Tarassova",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/olgatar/fro15_f_project_chat/issues"
+    "url": "https://github.com/olgatar/fro15_f_project_travelnotebook/issues"
   },
-  "homepage": "https://github.com/olgatar/fro15_f_project_chat#readme",
+  "homepage": "https://github.com/olgatar/fro15_f_project_travelnotebook#readme",
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
