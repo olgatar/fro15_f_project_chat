@@ -17,13 +17,14 @@
     "MEAN"
   ],
   "author": "Olga Tarassova",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/olgatar/fro15_f_project_travelnotebook/issues"
   },
   "homepage": "https://github.com/olgatar/fro15_f_project_travelnotebook#readme",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-base64-upload": "^0.1.19",
     "angular-route": "^1.5.8",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",

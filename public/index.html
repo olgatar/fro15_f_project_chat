@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TravelNotebook</title>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style/main.css">
+</head>
+<body ng-app="travelNotebook">
+	<div ng-controller="travelPostsCtrl">
+
+		<div id="main-content" class="container">
+
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+			  <div class="container-fluid">
+			      <h3>TravelNotebook</h3>
+			  </div>
+			</nav>
+
+			<button type="button" id="btn-add-entry" name="button" class="btn btn-primary btn-block btn-md" ng-show="showbutton" ng-click="showform = true; showbutton = false">Add new entry</button>
+
+			<form name="form" id="new-entry-form" ng-show="showform">
+
+				<div class="form-group">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Title" id="entry-title" name="entry-title" ng-model="entry.title" required>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Country" id="entry-country" name="entry-country" ng-model="entry.country" required>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" rows="1" placeholder="Tell short about your travel" id="entry-main-body" name="entry-main-body" ng-model="entry.main_body" required></textarea>
+					</div>
+					<div class="image-upload">
+						<label class="image-container">
+							Upload image
+							<input class="form-control" type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input ng-click="showimage = true" onchange="getImageURL(event);">
+						</label></br></br>
+						<div id="image-div" ng-show="showimage"></div>
+					</div>
+				</div>
+
+				<button type="button" id="btn-save-entry" name="button" class="btn btn-primary btn-block btn-md" ng-click="addEntry(); saveEntry(entry, $index); showform = false; showbutton = true">Save new entry</button>
+
+			</form>
+
+
+
+			<div id="entry-list" ng-repeat="entry in entries | orderBy: 'date' ">
+				<span>{{ entry.title }}</span>
+				<span>{{ entry.country }}</span>
+				<span>{{ entry.main_body }}</span>
+				<div id="entry-main-image">
+					<img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
+				</div>
+				<button type="button" id="btn-notes" name="button" class="btn btn-primary btn-md" ng-click="toggle($index);">Open Notebook</button>
+				<span ng-show="shownotebook[$index]">testar</span>
+
+				<button type="button" id="btn-delete-entry" name="button" class="btn btn-primary btn-block btn-md" ng-click="deleteEntry(entry, $index)">Delete entry</button>
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+	<footer class="navbar-fixed-bottom">
+		<p class="footer-paragraph">&copy; 2016 Olga Tarassova</p>
+	</footer>
+
+	<script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+	<script src="node_modules/angular-route/angular-route.min.js" type="text/javascript"></script>
+	<script src="node_modules/angular-base64-upload/src/angular-base64-upload.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery-3.0.0.min.js" type="text/javascript" type="text/javascript"></script>
+	<script src="js/get-image-url.js" type="text/javascript"></script>
+	<script src="js/app.js" type="text/javascript"></script>
+	<script src="js/services.js" type="text/javascript"></script>
+	<script src="js/controllers.js" type="text/javascript"></script>
+	<!-- <script src="js/directives.js" type="text/javascript"></script> -->
+</body>
+</html>
