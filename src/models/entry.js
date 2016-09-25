@@ -13,16 +13,17 @@ var entrySchema = new mongoose.Schema({
 		filename: String,
 		base64: String
 	},
-  //notes: {
-		//date: { type: Date, default: Date.now },
-		//sub_image: {
-			//filesize: Number,
-			//filetype: String,
-			//filename: String,
-			//base64: String
-		//},
-		//sub_body: String
-	//}
+  notes: [{
+		sub_date: { type: Date, default: Date.now },
+		sub_image: {
+			filesize: Number,
+			filetype: String,
+			filename: String,
+			base64: String
+		},
+		sub_body: String,
+		notes_count: Number
+	}]
 });
 
 var model = mongoose.model('Entry', entrySchema);

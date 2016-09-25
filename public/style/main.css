@@ -6,7 +6,7 @@ body { padding-top: 70px; padding-bottom: 70px;}
 button {
   background-color: #000 !important;
   font-size: 18px !important;
-  margin: 20px 0 !important;
+  margin: 5px 0 !important;
 }
 
 button:hover {
@@ -18,6 +18,7 @@ button:hover {
 
 input {
   height: 30px !important;
+  margin: 10px 0 !important;
 }
 
 input, textarea {
@@ -30,6 +31,10 @@ input[placeholder] {
   color: grey;
 }
 
+.row {
+  margin: 0 !important;
+}
+
 
 /* HEADER */
 .navbar h3 {
@@ -40,13 +45,15 @@ input[placeholder] {
 
 /* MAIN CONTENT */
 #main-content {
-  max-width: 400px;
   font-family: 'Josefin Sans', sans-serif;
   text-align: center;
 }
 
+/* ADD NEW ENTRY FORM */
+
 #new-entry-form {
-  margin: 20px 0;
+  max-width: 400px;
+  margin: 20px auto;
 }
 
 #entry-main-body {
@@ -83,12 +90,116 @@ input[placeholder] {
 }
 
 /* ENTRY LIST */
+.entry-main-image {
+  max-width: 600px;
+}
 
-#entry-main-image img {
+.entry-main-image img {
   width: 100%;
   border: 1px solid none;
   border-radius: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+}
+
+#entry-list {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#entry-list h3 {
+  font-weight: bold;
+}
+
+.title-edit {
+  margin-top: 20px !important;
+  font-weight: bold;
+  font-size: 22px !important;
+}
+
+.country-edit {
+  height: 30px !important;
+  border: 1px solid grey !important;
+  border-radius: 5px !important;
+}
+
+#entry-list span {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#entry-list p {
+  font-size: 16px;
+  text-align: justify;
+}
+
+.btn-notes {
+  float: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 30%;
+}
+
+.btn-delete-entry {
+  float: right;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 30%;
+}
+
+.btn-change-entry {
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 30%;
+}
+
+/* NOTEBOOK */
+
+.notebook {
+  max-width: 580px;
+  margin: 15px auto;
+}
+
+.notebook input {
+  text-align: left;
+}
+
+.note-input {
+  text-align: left !important;
+}
+
+.entry-note-image img {
+  width: 100%;
+  border: 1px solid none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.add-new-note {
+  max-width: 600px;
+}
+
+.add-new-note label {
+  font-size: 16px !important;
+}
+
+.btn-add-note {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.entry-note-message {
+  text-align: left;
+  font-size: 16px !important;
+}
+
+.entry-note-message h4 {
+  font-weight: bold;
+  margin-top: 0;
+  font-size: 15px !important;
+}
+
+.note-image-upload {
+  padding: 0;
 }
 
 
