@@ -26,6 +26,6 @@ var entrySchema = new mongoose.Schema({
 	}]
 });
 
-var model = mongoose.model('Entry', entrySchema);
+var entrymodel = mongoose.model('Entry', entrySchema);
 
-module.exports = model;
+module.exports = entrymodel;

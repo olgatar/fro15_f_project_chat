@@ -1,8 +1,9 @@
 'use strict';
 
+// require mongoose and create connection to database
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/travelsdb', function(err) {
+mongoose.connect('mongodb://localhost/travelnotebook', function(err) {
   if (err) {
     console.log('Failed connecting to MongoDB');
   } else {

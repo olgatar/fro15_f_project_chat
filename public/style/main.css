@@ -1,7 +1,26 @@
 /* FONTS */
 
 /* GENERAL */
+html {
+  height: 100%;
+}
 body { padding-top: 70px; padding-bottom: 70px;}
+
+select {
+  text-align: justify !important;
+  margin-bottom: 15px;
+  padding: 0 0 0 20px !important;
+  font-family: 'Josefin Sans', sans-serif !important;
+  font-size: 18px !important;
+  color: grey !important;
+  border: solid 1px #517B97;
+  outline: 0;
+  background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #D3D3D3), to(#FFFFFF));
+  background: -moz-linear-gradient(top, #FFFFFF, #D3D3D3 1px, #FFFFFF 25px);
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
 
 button {
   background-color: #000 !important;
@@ -32,9 +51,13 @@ input[placeholder] {
 }
 
 .row {
-  margin: 0 !important;
+  margin: 0 0 15px 0!important;
 }
 
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 
 /* HEADER */
 .navbar h3 {
@@ -51,6 +74,29 @@ input[placeholder] {
 
 /* ADD NEW ENTRY FORM */
 
+.filter select {
+  padding: 0px 10px 0px 5px !important;
+  font-weight: bold;
+  color: #000 !important;
+  border: 1px solid #000;
+  font-size: 16px !important;
+  height: 30px !important;
+  display: block;
+  width: 50% !important;
+}
+
+.filter {
+  height: 30px !important;
+}
+
+#btn-filter {
+  float: right;
+  margin: 0 !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 30px !important;
+}
+
 #new-entry-form {
   max-width: 400px;
   margin: 20px auto;
@@ -60,7 +106,7 @@ input[placeholder] {
   margin-bottom: 0 !important;
 }
 
-#image-div {
+#entry-image-div {
 	background-image:url('');
 	background-size:cover;
 	background-position: center;
@@ -90,24 +136,24 @@ input[placeholder] {
 }
 
 /* ENTRY LIST */
-.entry-main-image {
-  max-width: 600px;
-}
-
-.entry-main-image img {
-  width: 100%;
-  border: 1px solid none;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
 #entry-list {
   max-width: 600px;
   margin: 0 auto;
 }
 
 #entry-list h3 {
+  border-bottom: 2px solid #000;
   font-weight: bold;
+}
+
+#entry-list span {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#entry-list p {
+  font-size: 18px !important;
+  text-align: justify;
 }
 
 .title-edit {
@@ -122,14 +168,15 @@ input[placeholder] {
   border-radius: 5px !important;
 }
 
-#entry-list span {
-  font-size: 17px;
-  font-weight: bold;
+.entry-main-image {
+  max-width: 600px;
 }
 
-#entry-list p {
-  font-size: 16px;
-  text-align: justify;
+.entry-main-image img {
+  width: 100%;
+  border: 1px solid none;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .btn-notes {
@@ -167,6 +214,17 @@ input[placeholder] {
   text-align: left !important;
 }
 
+/*.note-image-preview-div {
+  max-width: 580px;
+} */
+
+.note-image-preview-div img {
+  width: 100%;
+  border: 1px solid none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
 .entry-note-image img {
   width: 100%;
   border: 1px solid none;
@@ -188,18 +246,31 @@ input[placeholder] {
 }
 
 .entry-note-message {
+  word-wrap: break-word;
   text-align: left;
   font-size: 16px !important;
+}
+
+.entry-note-message p {
+  margin-top: 5px;
 }
 
 .entry-note-message h4 {
   font-weight: bold;
   margin-top: 0;
   font-size: 15px !important;
+  display: inline-block;
 }
 
 .note-image-upload {
   padding: 0;
+}
+
+.btn-delete-note {
+  float: right;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 

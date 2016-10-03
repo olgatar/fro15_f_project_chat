@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style/main.css">
 </head>
 <body ng-app="travelNotebook">
-	<div ng-controller="travelPostsCtrl">
+	<div ng-controller="travelNotebookCtrl">
 
 		<div id="main-content" class="container-fluid">
 
@@ -17,33 +17,40 @@
 			  </div>
 			</nav>
 			<div id="new-entry-form">
-
-				<button type="button" id="btn-add-entry" name="button" class="btn btn-primary btn-block btn-md" ng-show="showbutton" ng-click="showform = true; showbutton = false">Add new entry</button>
-
-				<form name="form" ng-show="showform">
+				<!-- To filter entrie by selected country or show all -->
+				<div class="filter row">
+					<country-select selected-country="selected_country" default-value="-- Filter by country --"></country-select>
+					<button type="button" id="btn-filter" name="button" class="col-xs-5 btn btn-primary btn-inline-block btn-md" ng-click="refreshEntries(); addNewEntryFormVisible = false; ">Show all</button>
+				</div>
+				<!-- Button to open input form to add a new entry -->
+				<button type="button" id="btn-add-entry" name="button" class="btn btn-primary btn-block btn-md" ng-show="addNewEntryBtnVisible" ng-click="addNewEntryFormVisible = true; addNewEntryBtnVisible = false">Add new entry</button>
+				<!-- Input form to add a new entry -->
+				<form name="form" ng-show="addNewEntryFormVisible">
 
 					<div class="form-group">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Title" id="entry-title" name="entryTitle" ng-model="entry.title" required>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Country" id="entry-country" name="entryCountry" ng-model="entry.country" required>
+							<country-select selected-country="entry.country" default-value=" -- Select country -- "></country-select></select>
 						</div>
 						<div class="form-group">
 							<textarea class="form-control" rows="1" placeholder="Tell short about your travel" id="entryMainBody" name="entry-main-body" ng-model="entry.main_body" required></textarea>
 						</div>
+						<!-- Image upload that will be saved as base64 object -->
 						<div class="image-upload">
 							<label class="image-container">
 								Upload image
-								<input class="form-control" type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input ng-click="showimage = true" onchange="getImageURL(event);">
-							</label></br></br>
-							<div id="image-div" ng-show="showimage"></div>
+								<input class="form-control" type="file" ng-model="entry.main_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input ng-click="formImagePreviewVisible = true" onchange="getEntryImageURL(event);">
+							</label>
 						</div>
+						</br></br>
+						<div id="entry-image-div" ng-show="formImagePreviewVisible"></div>
+						<button type="button" id="btn-save-entry" name="button" class="btn btn-primary btn-block btn-md" ng-click="addEntry(); saveEntry(entry,$index); addNewEntryFormVisible = false; addNewEntryBtnVisible = true">Save new entry</button>
 					</div>
-					<button type="button" id="btn-save-entry" name="button" class="btn btn-primary btn-block btn-md" ng-click="addEntry(); saveEntry(entry, $index); showform = false; showbutton = true">Save new entry</button>
 				</form>
 			</div>
-
+			<!-- List of entries added to and existed in the database -->
 			<div id="entry-list">
 
 				<div ng-repeat="entry in entries | orderBy:'$index':true">
@@ -51,7 +58,7 @@
 					<div class="form-group">
 						<input type="text" class="title-edit form-control" ng-show="title.editing" value={{entry.title}} ng-model="entry.title" required>
 					</div>
-					<span><span>{{ entry.date | date:'dd/MM/yyyy' }} - in </span><span ng-hide="country.editing">{{ entry.country }}</span>
+					<span><span>{{ entry.date | date:'yyyy-MM-dd' }} - in </span><span ng-hide="country.editing">{{ entry.country }}</span>
 					<input type="text" class="country-edit" ng-show="country.editing" value={{entry.country}} ng-model="entry.country" required></span>
 					<p ng-hide="main_body.editing">{{ entry.main_body }}</p>
 					<input type="text" class="form-control" ng-show="main_body.editing" value={{entry.main_body}} ng-model="entry.main_body" required></span>
@@ -60,42 +67,48 @@
 					</div>
 					<div class="entry-buttons">
 						<button type="button" name="button" class="btn-notes btn btn-primary btn-md" ng-click="toggleNotebook($index);">Notes  ({{entry.notes.length}})</button>
-						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-show="showChangeButton" ng-click="title.editing = true; country.editing = true; main_body.editing = true; showChangeButton = false">Change</button>
-						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-hide="showChangeButton" ng-click="saveEntry(entry, $index); showChangeButton = true;">Save</button>
+						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-show="changeBtnVisible" ng-click="title.editing = true; country.editing = true; main_body.editing = true; changeBtnVisible = false">Change</button>
+						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-hide="changeBtnVisible" ng-click="saveEntry(entry, $index); changeBtnVisible = true;">Save</button>
 						<button type="button" name="button" class="btn-delete-entry btn btn-primary btn-md" ng-click="deleteEntry(entry, $index)">Delete</button>
 					</div>
+					<!-- Input form to add a notebook for the selected entry -->
 					<div class="clearfix"></div>
-					<div class="notebook" ng-show="shownotebook[$index]">
+					<div class="notebook" ng-show="notebookVisible[$index]">
 						<div class="row add-new-note">
+							<!-- Image upload that will be saved as base64 object -->
 							<div class="col-xs-2 note-image-upload" >
 								<label class="image-container">
 									Upload image
-									<input class="form-control" type="file" ng-model="note.sub_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input on-after-validate="activatePreview">
+									<input class="form-control" type="file" ng-model="new_note.sub_image" name="file" accept="image/*" maxsize="5000" required base-sixty-four-input onchange="getNoteImageURL(event);" onloadend="previewVisible($index)">
 								</label>
 							</div>
 							<div class="col-xs-8 form-group">
-								<textarea type="text" rows="1" class="note-input form-control" placeholder="Write your note here" ng-model="note.sub_body" required></textarea>
+								<textarea type="text" rows="1" class="note-input form-control" placeholder="Write your note here" ng-init="new_note.sub_body=''" ng-model="new_note.sub_body" required></textarea>
 							</div>
-							<button type="button" name="button" class="btn-add-note col-xs-2 btn btn-primary btn-md" ng-click="addEntryNote(entry, note, $index); noteImagePreview = false">Add note</button>
+							<button type="button" name="button" class="btn-add-note col-xs-2 btn btn-primary btn-md" ng-click="addEntryNote(entry, note, new_note, $index); noteImgPreviewVisible = false;">Add note</button>
 						</div>
-
-						<div class="row" ng-if="noteImagePreview" >
-							<div class="entry-note-image col-xs-4">
-								<img data-ng-src="data:image/jpg;base64,{{note.sub_image.base64}}" data-err-src=""/>
+						<!-- Image preview div for new note to be added -->
+						<div class="row" ng-show="noteImgPreviewVisible[$index]">
+							<div class="note-image-preview-div col-xs-4">
+								<img class="note-image-preview" src="" alt="">
 							</div>
-							<div class="col-xs-8"></div>
+							<div id="entry-note-message col-xs-8">
+							</div>
 						</div>
-
-						<div class="row" ng-repeat="note in entry.notes">
+						<!-- List of notes added for the selected entry -->
+						<div class="entry-note">
+						<div class="row" ng-repeat="(key,note) in entry.notes">
 							<div class="entry-note-image col-xs-4">
 								<img data-ng-src="data:image/jpg;base64,{{note.sub_image.base64}}" data-err-src=""/>
 							</div>
 							<div class="entry-note-message col-xs-8">
-								<h4>{{ note.sub_date | date:'dd/MM/yyyy' }}</h4>
-								<span>{{ note.sub_body }}</span>
+								<h4>{{ note.sub_date | date:'yyyy-MM-dd  -  HH:mm' }}</h4>
+								<button type="button" name="button" class="btn-delete-note btn btn-primary btn-md" ng-click="deleteEntryNote(entry, note, $parent.$index, $index)">Delete</button>
+								<p>{{ note.sub_body }}</p>
 							</div>
 						</div>
-
+						<div class="clearfix"></div>
+					</div>
 					</div>
 
 				</div>
@@ -106,14 +119,14 @@
 		<p class="footer-paragraph">&copy; 2016 Olga Tarassova</p>
 	</footer>
 
-	<script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
-	<script src="node_modules/angular-route/angular-route.min.js" type="text/javascript"></script>
+	<script src="node_modules/angular/angular.js" type="text/javascript"></script>
+	<script src="node_modules/angular-route/angular-route.js" type="text/javascript"></script>
 	<script src="node_modules/angular-base64-upload/src/angular-base64-upload.js" type="text/javascript"></script>
 	<script src="js/jquery/jquery-3.0.0.min.js" type="text/javascript" type="text/javascript"></script>
 	<script src="js/get-image-url.js" type="text/javascript"></script>
 	<script src="js/app.js" type="text/javascript"></script>
 	<script src="js/services.js" type="text/javascript"></script>
 	<script src="js/controllers.js" type="text/javascript"></script>
-	<!-- <script src="js/directives.js" type="text/javascript"></script> -->
+	<script src="js/directives.js" type="text/javascript"></script>
 </body>
 </html>
