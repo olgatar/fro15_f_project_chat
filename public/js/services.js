@@ -7,6 +7,10 @@ angular.module('travelNotebook').service('dataService', function($http) {
       $http.get('/api/entries', {params: parameters}).then(cb);
   };
 
+  this.getAllEntries = function(cb) {
+      $http.get('/api/entries').then(cb);
+  };
+
   // delete an antry from database and return result to scope
   this.deleteEntry = function(entry) {
     if (!entry._id) {
@@ -17,10 +21,10 @@ angular.module('travelNotebook').service('dataService', function($http) {
     });
   };
 
-  // update a changed entry in database and return result to scope
+  // update new entry added or a changed entry in database and return result to scope
   this.updateEntry = function(entry) {
       if (!entry._id) {
-        $http.post('/api/entries', entry);
+        return $http.post('/api/entries', entry);
       }
       else {
         $http.put('/api/entries/' + entry._id, entry).then(function(result) {

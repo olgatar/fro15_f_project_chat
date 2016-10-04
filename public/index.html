@@ -19,7 +19,10 @@
 			<div id="new-entry-form">
 				<!-- To filter entrie by selected country or show all -->
 				<div class="filter row">
-					<country-select selected-country="selected_country" default-value="-- Filter by country --"></country-select>
+					<select class="form-control select special col-xs-6" ng-model="selected_country" ng-options="item.country as item.country for item in allEntries | filterDuplicates: 'country'">
+						<option disabled selected value>-- Filter by country --</option>
+					</select>
+					<!-- <country-select selected-country="selected_country" default-value="-- Filter by country --"></country-select> -->
 					<button type="button" id="btn-filter" name="button" class="col-xs-5 btn btn-primary btn-inline-block btn-md" ng-click="refreshEntries(); addNewEntryFormVisible = false; ">Show all</button>
 				</div>
 				<!-- Button to open input form to add a new entry -->
@@ -53,7 +56,7 @@
 			<!-- List of entries added to and existed in the database -->
 			<div id="entry-list">
 
-				<div ng-repeat="entry in entries | orderBy:'$index':true">
+				<div class="entry-div" ng-repeat="entry in entries | orderBy:'$index':true">
 					<h3 ng-hide="title.editing">{{ entry.title }}</h3>
 					<div class="form-group">
 						<input type="text" class="title-edit form-control" ng-show="title.editing" value={{entry.title}} ng-model="entry.title" required>
@@ -68,8 +71,8 @@
 					<div class="entry-buttons">
 						<button type="button" name="button" class="btn-notes btn btn-primary btn-md" ng-click="toggleNotebook($index);">Notes  ({{entry.notes.length}})</button>
 						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-show="changeBtnVisible" ng-click="title.editing = true; country.editing = true; main_body.editing = true; changeBtnVisible = false">Change</button>
-						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-hide="changeBtnVisible" ng-click="saveEntry(entry, $index); changeBtnVisible = true;">Save</button>
-						<button type="button" name="button" class="btn-delete-entry btn btn-primary btn-md" ng-click="deleteEntry(entry, $index)">Delete</button>
+						<button type="button" name="button" class="btn-change-entry btn btn-primary btn-md" ng-hide="changeBtnVisible" ng-click="saveChangedEntry(entry,$index); title.editing = false; country.editing = false; main_body.editing = false; changeBtnVisible = true;">Save</button>
+						<button type="button" name="button" class="btn-delete-entry btn btn-primary btn-md" ng-click="deleteEntry(entry,$index)">Delete</button>
 					</div>
 					<!-- Input form to add a notebook for the selected entry -->
 					<div class="clearfix"></div>
@@ -128,5 +131,6 @@
 	<script src="js/services.js" type="text/javascript"></script>
 	<script src="js/controllers.js" type="text/javascript"></script>
 	<script src="js/directives.js" type="text/javascript"></script>
+	<script src="js/filters.js" type="text/javascript"></script>
 </body>
 </html>

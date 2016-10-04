@@ -1,9 +1,15 @@
-# fro15_f_project_travelnotebook
+# App TravelNotebook
+
+Copyright (c) 2016 Olga Tarassova
 =================================
+
 Project assignment for Lernia FRO15 course Advanced Web Application 2.
 TravelNotebook is a MEAN application with CRUD functionality using MongoDB (with MongooseJS), Express, Angular and Node.
 
-TravelNotebook is an app to create and keep track on your travels as your travel blog
+TravelNotebook is an app to create and keep track on your travels, similar to blog.
+You can even filter posts by selected country or go back to show all.
+Under each travel post you can open a notebook and add several notes for the
+selected travel post.
 
 # The following modules and dependencies should be installed:
 

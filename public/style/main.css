@@ -4,7 +4,10 @@
 html {
   height: 100%;
 }
-body { padding-top: 70px; padding-bottom: 70px;}
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
 
 select {
   text-align: justify !important;
@@ -137,7 +140,7 @@ input[placeholder] {
 
 /* ENTRY LIST */
 #entry-list {
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -156,6 +159,9 @@ input[placeholder] {
   text-align: justify;
 }
 
+.entry-div{
+  margin-bottom: 30px;
+}
 .title-edit {
   margin-top: 20px !important;
   font-weight: bold;
@@ -169,7 +175,7 @@ input[placeholder] {
 }
 
 .entry-main-image {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .entry-main-image img {
@@ -202,7 +208,7 @@ input[placeholder] {
 /* NOTEBOOK */
 
 .notebook {
-  max-width: 580px;
+  max-width: 480px;
   margin: 15px auto;
 }
 
@@ -215,7 +221,7 @@ input[placeholder] {
 }
 
 /*.note-image-preview-div {
-  max-width: 580px;
+  max-width: 480px;
 } */
 
 .note-image-preview-div img {
@@ -243,6 +249,7 @@ input[placeholder] {
 .btn-add-note {
   padding-top: 0;
   padding-bottom: 0;
+  font-size: 14px !important;
 }
 
 .entry-note-message {

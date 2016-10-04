@@ -12,15 +12,22 @@ angular.module('travelNotebook').controller('travelNotebookCtrl', function($scop
   $scope.new_note = {};
   $scope.entry = {};
 
-  // define parameters to pass together with http get requests
+
+  //get all entries from database without any filter and return to scope
+  dataService.getAllEntries(function(response) {
+      $scope.allEntries =  response.data.entries;
+  });
+
+  // define filter parameter to pass together with http get requests
   var parameters = {
     selected_country: $scope.selected_country
   };
 
-  //get all entries from database and show in html
+  //get either all or filtered entries from database and return to scope
   dataService.getEntries(parameters, function(response) {
       $scope.entries =  response.data.entries;
   });
+
 
   // add new entry
   $scope.addEntry = function() {
@@ -47,18 +54,22 @@ angular.module('travelNotebook').controller('travelNotebookCtrl', function($scop
     });
   };
 
-  // save selected or changed entry
+  // save new entry
   $scope.saveEntry = function(entry, i) {
       dataService.updateEntry(entry);
-      dataService.getEntries(parameters, function(response) {
-        $scope.entries = response.data.entries;
-      });
+      location.reload();
       $scope.entry = {};
+  };
+
+  // save selected or changed entry
+  $scope.saveChangedEntry = function(entry, i) {
+      dataService.updateEntry(entry);
   };
 
   // toggle to open/close entry notebook
   $scope.notebookVisible = [];
   $scope.toggleNotebook = function(i) {
+    $scope.noteImgPreviewVisible[i] = false;
     $scope.notebookVisible[i] = $scope.notebookVisible[i] ? false : true;
   };
 
@@ -117,11 +128,10 @@ angular.module('travelNotebook').controller('travelNotebookCtrl', function($scop
 
   // refresh the entries back after filter
   $scope.refreshEntries = function() {
-    $scope.filter_status = false;
-    dataService.getEntries(parameters, function(response) {
+    dataService.getAllEntries(function(response) {
       $scope.entries =  response.data.entries;
     });
+    $scope.selected_country = {};
   }
-
 
 });
