@@ -69,7 +69,6 @@ angular.module('travelNotebook').controller('travelNotebookCtrl', function($scop
   // toggle to open/close entry notebook
   $scope.notebookVisible = [];
   $scope.toggleNotebook = function(i) {
-    $scope.noteImgPreviewVisible[i] = false;
     $scope.notebookVisible[i] = $scope.notebookVisible[i] ? false : true;
   };
 
