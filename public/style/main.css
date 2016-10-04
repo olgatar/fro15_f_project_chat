@@ -102,7 +102,7 @@ input[placeholder] {
 
 #new-entry-form {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 30px auto;
 }
 
 #entry-main-body {
@@ -176,10 +176,12 @@ input[placeholder] {
 
 .entry-main-image {
   max-width: 500px;
+  max-height: 450px;
+  overflow: hidden;
 }
 
 .entry-main-image img {
-  width: 100%;
+  width:100% !important;
   border: 1px solid none;
   border-radius: 5px;
   margin-bottom: 5px;

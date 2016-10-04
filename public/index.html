@@ -66,7 +66,7 @@
 					<p ng-hide="main_body.editing">{{ entry.main_body }}</p>
 					<input type="text" class="form-control" ng-show="main_body.editing" value={{entry.main_body}} ng-model="entry.main_body" required></span>
 					<div class="entry-main-image">
-						<img data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
+						<img class="img-responsive" data-ng-src="data:image/jpg;base64,{{entry.main_image.base64}}" data-err-src=""/>
 					</div>
 					<div class="entry-buttons">
 						<button type="button" name="button" class="btn-notes btn btn-primary btn-md" ng-click="toggleNotebook($index);">Notes  ({{entry.notes.length}})</button>

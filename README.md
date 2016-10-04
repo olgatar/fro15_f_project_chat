@@ -2,8 +2,6 @@
 
 Copyright (c) 2016 Olga Tarassova
 =================================
-
-Project assignment for Lernia FRO15 course Advanced Web Application 2.
 TravelNotebook is a MEAN application with CRUD functionality using MongoDB (with MongooseJS), Express, Angular and Node.
 
 TravelNotebook is an app to create and keep track on your travels, similar to blog.
@@ -22,15 +20,17 @@ MongoDB
 "express": "^4.14.0",
 "mongoose": "^4.6.1"
 
+1. Run "npm init" in Github shell project console window to create package.json
+2. Install all modules and add all dependencies from above using command:
+    npm install [module name] --save
+
 # App also uses the following frameworks:
 
 Bootstrap
 JQuery
 
 # To run the app:
-1. Run "npm init" in Github shell project console window to create package.json
-2. Install all modules and add all dependencies from above
-3. Run "mongod" command in first console window
-4. Run "mongo" command in second console window
-5. Run "node src/app.js" command in Github shell project console window
-6. Open the localhost window
+1. Run "mongod" command in first console window
+2. Run "mongo" command in second console window
+3. Run "node src/app.js" command in Git Shell project console window
+4. Open your internet browser go to http://localhost:3000/

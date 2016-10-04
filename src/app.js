@@ -9,8 +9,8 @@ var app = express();
 require('./database');
 
 app.use('/', express.static('public'));
-app.use(parser.json({limit: '5mb'}));
-app.use(parser.urlencoded({limit: '5mb'}));
+app.use(parser.json({limit: '50mb'}));
+app.use(parser.urlencoded({limit: '50mb'}));
 app.use(parser.json());
 app.use('/api', router);
 
