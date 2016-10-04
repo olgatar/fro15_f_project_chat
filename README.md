@@ -1,6 +1,6 @@
 ### App TravelNotebook
 
-Copyright (c) 2016 Olga Tarassova
+### Copyright (c) 2016 Olga Tarassova
 =================================
 TravelNotebook is a MEAN application with CRUD functionality using MongoDB (with MongooseJS), Express, Angular and Node.
 
