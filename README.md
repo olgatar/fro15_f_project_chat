@@ -1,4 +1,4 @@
-# App TravelNotebook
+### App TravelNotebook
 
 Copyright (c) 2016 Olga Tarassova
 =================================
@@ -9,7 +9,7 @@ You can even filter posts by selected country or go back to show all.
 Under each travel post you can open a notebook and add several notes for the
 selected travel post.
 
-# The following modules and dependencies should be installed:
+### The following modules and dependencies should be installed:
 
 MongoDB
 
@@ -24,12 +24,12 @@ MongoDB
 2. Install all modules and add all dependencies from above using command:
     npm install [module name] --save
 
-# App also uses the following frameworks:
+### App also uses the following frameworks:
 
 Bootstrap
 JQuery
 
-# To run the app:
+### To run the app:
 1. Run "mongod" command in first console window
 2. Run "mongo" command in second console window
 3. Run "node src/app.js" command in Git Shell project console window
