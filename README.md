@@ -20,8 +20,8 @@ MongoDB
 "express": "^4.14.0",
 "mongoose": "^4.6.1"
 
-1. Run "npm init" in Github shell project console window to create package.json
-2. Install all modules and add all dependencies from above using command:
+1. Run "npm install" in Github shell project console window to install node_modules
+2. To add all dependencies from above using command:
     npm install [module name] --save
 
 ### App also uses the following frameworks:
